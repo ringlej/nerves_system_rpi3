@@ -1,0 +1,29 @@
+From a5f39abb977fae48ac9c72bfe01860b804209d66 Mon Sep 17 00:00:00 2001
+From: Jon Ringle <jringle@gridpoint.com>
+Date: Sun, 14 May 2023 23:25:39 -0400
+Subject: [PATCH] tty/vt: Disable cursor
+
+---
+ drivers/tty/vt/vt.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/drivers/tty/vt/vt.c b/drivers/tty/vt/vt.c
+index b8f5bc19416d..118d63ba89f7 100644
+--- a/drivers/tty/vt/vt.c
++++ b/drivers/tty/vt/vt.c
+@@ -160,10 +160,10 @@ static void set_palette(struct vc_data *vc);
+ static int printable;		/* Is console ready for printing? */
+ int default_utf8 = true;
+ module_param(default_utf8, int, S_IRUGO | S_IWUSR);
+-int global_cursor_default = -1;
++int global_cursor_default = 0;
+ module_param(global_cursor_default, int, S_IRUGO | S_IWUSR);
+ 
+-static int cur_default = CUR_UNDERLINE;
++static int cur_default = CUR_NONE;
+ module_param(cur_default, int, S_IRUGO | S_IWUSR);
+ 
+ /*
+-- 
+2.25.1
+
